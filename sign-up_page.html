@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>EduDonate - Sign Up & Log In</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="sign-up.css">
-    <!-- <link rel="stylesheet" href="login.css"> -->
+    <!-- <link rel="stylesheet" href="login.css"> 
 </head>
 <body>
 
@@ -44,5 +44,133 @@
     </main>
 
     <script src="script.js"></script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduDonate - Login / Sign Up</title>
+    <link rel="stylesheet" href="sign-up.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- <header class="header">
+        <a href="index.html" class="logo">EduDonate</a>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="programs.html">Programs</a>
+            <a href="impact.html">Impact</a>
+            <a href="get-involved.html">Get Involved</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <a href="donate.html" class="donate-btn">Donate Now</a>
+    </header> -->
+    <main class="auth-container">
+        <div class="auth-box login-box">
+            <h2>Login to your account</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                <button type="submit" class="auth-button">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="showSignup">Sign up</a></p>
+        </div>
+
+        <div class="auth-box signup-box" style="display: none;">
+            <h2>Create an account</h2>
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" required>
+                </div>
+                <button type="submit" class="auth-button">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            </div>
+        <div class="footer-bottom">
+            &copy; 2024 EduDonate. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            const signupForm = document.getElementById('signupForm');
+            const showSignup = document.getElementById('showSignup');
+            const showLogin = document.getElementById('showLogin');
+            const loginBox = document.querySelector('.login-box');
+            const signupBox = document.querySelector('.signup-box');
+    
+            // Function to switch to the Sign Up view
+            showSignup.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginBox.style.display = 'none';
+                signupBox.style.display = 'block';
+            });
+    
+            // Function to switch to the Login view
+            showLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                signupBox.style.display = 'none';
+                loginBox.style.display = 'block';
+            });
+    
+            // ** LOG IN Functionality **
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // In a real application, you would send data to a server here.
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+
+                if (email && password) {
+                    alert('Login successful! Welcome back.');
+                    // ** Redirect to Home Page **
+                    window.location.href = 'index.html'; 
+                } else {
+                    alert('Please enter your email and password.');
+                }
+            });
+    
+            // ** SIGN UP Functionality **
+            signupForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // In a real application, you would send data to a server here.
+                const fullName = document.getElementById('signup-name').value;
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+    
+                if (fullName && email && password) {
+                    alert('Sign up successful! Redirecting to homepage...');
+                    // ** Redirect to Home Page **
+                    window.location.href = 'index.html';
+                } else {
+                    alert('Please fill out all the fields.');
+                }
+            });
+        });
+    </script>
+    <!-- <script src="sign-up.js"></script> -->
 </body>
 </html>

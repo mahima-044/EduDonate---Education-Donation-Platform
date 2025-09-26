@@ -11,3 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // This code will run after the page content is fully loaded.
     console.log("The page has finished loading.");
 });
+
+// ** Redirect to Home Page **
+// window.location.href = 'index.html';

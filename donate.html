@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
 
     <header class="navbar">
@@ -48,7 +50,8 @@
                                         <i class="fa-solid fa-heart"></i>
                                         <h4>Adopt a Student</h4>
                                         <p>Sponsor a child's complete education journey.</p>
-                                        <a href="#" class="details-link">Direct support for 1 student's full education</a>
+                                        <a href="#" class="details-link">Direct support for 1 student's full
+                                            education</a>
                                     </div>
                                 </label>
                                 <label class="impact-option">
@@ -57,7 +60,8 @@
                                         <i class="fa-solid fa-house"></i>
                                         <h4>Sponsor a Village</h4>
                                         <p>Transform an entire community's educational infrastructure.</p>
-                                        <a href="#" class="details-link">Support for 200+ students and community development</a>
+                                        <a href="#" class="details-link">Support for 200+ students and community
+                                            development</a>
                                     </div>
                                 </label>
                                 <label class="impact-option">
@@ -202,8 +206,8 @@
                             </li>
                         </ul>
                     </div>
+                </div> 
                 </div>
-            </div>
         </section>
     </main>
 
@@ -257,6 +261,52 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const donationForm = document.getElementById('donationForm');
+            
+            // Check if the form exists before adding the listener
+            if (donationForm) {
+                donationForm.addEventListener('submit', (e) => {
+                    e.preventDefault(); // Stop the default form submission
+
+                    // 1. Capture the user's donation amount and other required fields
+                    const amountInput = document.getElementById('donationAmount');
+                    const nameInput = document.getElementById('donorName');
+                    const emailInput = document.getElementById('donorEmail');
+
+                    // If any ID is missing in the HTML, alert and stop
+                    if (!amountInput || !nameInput || !emailInput) {
+                        alert('Error: Missing required input IDs in HTML (donationAmount, donorName, or donorEmail).');
+                        return;
+                    }
+
+                    const amount = parseFloat(amountInput.value);
+                    const name = nameInput.value.trim();
+                    const email = emailInput.value.trim();
+
+                    // 2. Validate the form data
+                    if (!name || !email || !amount || amount <= 0) {
+                        alert('Validation Error: Please enter a valid name, email, and a donation amount greater than zero.');
+                        return; // Stop execution if validation fails
+                    }
+
+                    // *** Simulation of a successful donation ***
+                    
+                    // 3. Simulate a successful donation (using an alert)
+                    alert(`Thank you, ${name}! Your donation of $${amount.toFixed(2)} has been successfully processed. We appreciate your support for EduDonate.`);
+
+                    // Optional: Clear the form fields after successful submission
+                    donationForm.reset();
+                });
+            } else {
+                console.error("Donation form with ID 'donationForm' not found.");
+            }
+        });
+    </script>
+</body>
+</html>
     <script src="script.js"></script>
 </body>
+
 </html>

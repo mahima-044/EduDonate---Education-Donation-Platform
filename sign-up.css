@@ -1,5 +1,5 @@
 /* General login page styles */
-body.login-body {
+/* body.login-body {
     background-color: #eef2ff;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@ body.login-body {
 .login-image {
     width: 100%;
     height: 250px;
-    display: none; /* Hidden on mobile */
+    display: none; /* Hidden on mobile 
 }
 
 @media (min-width: 768px) {
@@ -159,4 +159,88 @@ body.login-body {
 .message.success {
     background-color: #dcfce7;
     color: #16a34a;
+} */
+
+/* --- Login/Sign Up Page Styles --- */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Adjust height to fill the screen nicely */
+    padding: 50px 20px;
+    background-color: #f4f7f6; /* Light background for the page */
 }
+
+.auth-box {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px; /* Standard size for a login form */
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.auth-box h2 {
+    margin-bottom: 25px;
+    color: #007bff; /* Primary color */
+    font-size: 1.8rem;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Important for padding and width calculation */
+    font-size: 1rem;
+}
+
+.auth-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #28a745; /* A vibrant green for action */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.auth-button:hover {
+    background-color: #218838;
+}
+
+.auth-box p {
+    margin-top: 20px;
+    font-size: 0.95rem;
+}
+
+.auth-box a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-box a:hover {
+    text-decoration: underline;
+}
+
+/* Hide one box when the other is shown (Handled by JS, but good to have CSS structure) */
+/* The "style="display: none;" on .signup-box in HTML handles the initial state */
