@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = trim($_POST['phone'] ?? '');
     $impact = $_POST['impact'] ?? '';
     $amount_type = $_POST['amount-type'] ?? '';
-    $amount = (float)($_POST['donation-amount'] ?? 0) * 1000;  // Scale to actual rupees
-    $custom_amount = (float)($_POST['custom-amount'] ?? 0) * 1000;  // Scale to actual rupees
+    $amount = (float)($_POST['donation-amount'] ?? 0);  // Already in rupees
+    $custom_amount = (float)($_POST['custom-amount'] ?? 0);  // Already in rupees
 
     // Compute final amount: use custom if provided, else preset
     $final_amount = $custom_amount > 0 ? $custom_amount : $amount;
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insert data into the database
     $stmt = $conn->prepare("INSERT INTO donations (first_name, last_name, email, phone, impact_type, amount_type, amount, custom_amount) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssdd", $first_name, $last_name, $email, $phone, $impact, $amount_type, $final_amount, $custom_amount);
+    $stmt->bind_param("ssssssdd", $first_name, $last_name, $email, $phone, $impact, $amount_type, $amount, $custom_amount);
 
     if ($stmt->execute()) {
         $donation_id = $conn->insert_id;

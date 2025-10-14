@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const summaryAmount = document.querySelector('.donation-summary h4');
         const summaryDetails = document.querySelector('.summary-details');
         const finalAmountHidden = document.getElementById('final-amount');
+        const impactAmount = document.querySelector('.donation-impact-text b');
 
         // Function to update summary
         function updateSummary() {
@@ -37,8 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update display
             const impactText = selectedImpact.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
             const typeText = selectedType === 'monthly' ? '/month' : '';
-            summaryAmount.textContent = `₹${finalAmount}k ${typeText}`;
+            summaryAmount.textContent = `₹${finalAmount} ${typeText}`;
             summaryDetails.textContent = `${impactText} • ${selectedType.charAt(0).toUpperCase() + selectedType.slice(1)} Donation`;
+
+            // Update impact text amount
+            if (impactAmount) {
+                impactAmount.textContent = `₹${finalAmount}`;
+            }
         }
 
         // Event listeners
@@ -52,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         donationAmountRadios.forEach(radio => {
             radio.addEventListener('change', () => {
-                customAmountInput.value = ''; // Clear custom if preset selected
+                customAmountInput.value = radio.value; // Fill custom input with selected amount
                 updateSummary();
             });
         });
@@ -79,10 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 return;
             }
-            // Additional validation can be added here
+            
         });
     }
 });
 
-// ** Redirect to Home Page **
-// window.location.href = 'index.html';
