@@ -7,6 +7,7 @@
     <title>Donate Now - EduDonate</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
 </head>
 
 <body>
@@ -40,7 +41,7 @@
                         <p>Your donation creates immediate impact and lasting change. Choose how you want to help.</p>
                     </div>
 
-                    <form class="donation-form">
+<form class="donation-form" action="donate_process.php" method="POST">
                         <div class="form-section">
                             <h3>Choose Your Impact</h3>
                             <div class="impact-options-grid">
@@ -99,27 +100,27 @@
                             </div>
                             <div class="amount-options">
                                 <label class="amount-btn">
-                                    <input type="radio" name="donation-amount" value="25" checked>
+                                    <input type="radio" name="donation-amount" value="2" checked>
                                     <span>₹2000</span>
                                 </label>
                                 <label class="amount-btn">
-                                    <input type="radio" name="donation-amount" value="50">
+                                    <input type="radio" name="donation-amount" value="4">
                                     <span>₹4000</span>
                                 </label>
                                 <label class="amount-btn">
-                                    <input type="radio" name="donation-amount" value="100">
+                                    <input type="radio" name="donation-amount" value="5">
                                     <span>₹5000</span>
                                 </label>
                                 <label class="amount-btn">
-                                    <input type="radio" name="donation-amount" value="250">
+                                    <input type="radio" name="donation-amount" value="8">
                                     <span>₹8000</span>
                                 </label>
                                 <label class="amount-btn">
-                                    <input type="radio" name="donation-amount" value="500">
+                                    <input type="radio" name="donation-amount" value="10">
                                     <span>₹10k</span>
                                 </label>
                                 <label class="amount-btn">
-                                    <input type="radio" name="donation-amount" value="1000">
+                                    <input type="radio" name="donation-amount" value="20">
                                     <span>₹20k</span>
                                 </label>
                             </div>
@@ -127,17 +128,18 @@
                                 <label for="custom-amount-input">Custom Amount</label>
                                 <input type="number" id="custom-amount-input" name="custom-amount" placeholder="Enter amount">
                             </div>
-                            <p class="donation-impact-text">Your **₹4k** per month will direct support for 1 student's full education</p>
+                            <input type="hidden" name="final-amount" id="final-amount" value="0">
+                            <p class="donation-impact-text">Your <b>₹2000</b> per month will direct support for 1 student's full education</p>
                         </div>
-                        
+
                         <div class="form-section">
                             <h3>Complete Your Donation</h3>
                             <div class="donation-form-fields">
                                 <div class="donation-info-left">
                                     <h4>Personal Information</h4>
-                                    <input type="text" placeholder="First Name" name="first-name">
+                                    <input type="text" placeholder="First Name" name="first-name" required>
                                     <input type="text" placeholder="Last Name" name="last-name">
-                                    <input type="email" placeholder="Email Address" name="email">
+                                    <input type="email" placeholder="Email Address" name="email" required>
                                     <input type="tel" placeholder="Phone Number (Optional)" name="phone">
                                 </div>
                                 <div class="donation-info-right">
@@ -155,7 +157,7 @@
                         <div class="donation-summary-box">
                             <div class="donation-summary">
                                 <span>Donation Summary</span>
-                                <h4>₹5k /month</h4>
+                                <h4>₹2 /month</h4>
                             </div>
                             <p class="summary-details">Adopt a Student • Monthly Donation</p>
                             <button type="submit" class="btn btn-primary complete-donation-btn">Complete Donation <i class="fa-regular fa-heart"></i></button>
@@ -196,7 +198,7 @@
                             </li>
                             <li>
                                 <span>Minakshi Raval</span>
-                                <span>₹10k</span>
+                                <span>₹1k</span>
                                 <p>General Support</p>
                             </li>
                             <li>
@@ -261,52 +263,6 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const donationForm = document.getElementById('donationForm');
-            
-            // Check if the form exists before adding the listener
-            if (donationForm) {
-                donationForm.addEventListener('submit', (e) => {
-                    e.preventDefault(); // Stop the default form submission
-
-                    // 1. Capture the user's donation amount and other required fields
-                    const amountInput = document.getElementById('donationAmount');
-                    const nameInput = document.getElementById('donorName');
-                    const emailInput = document.getElementById('donorEmail');
-
-                    // If any ID is missing in the HTML, alert and stop
-                    if (!amountInput || !nameInput || !emailInput) {
-                        alert('Error: Missing required input IDs in HTML (donationAmount, donorName, or donorEmail).');
-                        return;
-                    }
-
-                    const amount = parseFloat(amountInput.value);
-                    const name = nameInput.value.trim();
-                    const email = emailInput.value.trim();
-
-                    // 2. Validate the form data
-                    if (!name || !email || !amount || amount <= 0) {
-                        alert('Validation Error: Please enter a valid name, email, and a donation amount greater than zero.');
-                        return; // Stop execution if validation fails
-                    }
-
-                    // *** Simulation of a successful donation ***
-                    
-                    // 3. Simulate a successful donation (using an alert)
-                    alert(`Thank you, ${name}! Your donation of $${amount.toFixed(2)} has been successfully processed. We appreciate your support for EduDonate.`);
-
-                    // Optional: Clear the form fields after successful submission
-                    donationForm.reset();
-                });
-            } else {
-                console.error("Donation form with ID 'donationForm' not found.");
-            }
-        });
-    </script>
-</body>
-</html>
     <script src="script.js"></script>
 </body>
-
 </html>
