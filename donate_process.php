@@ -58,7 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         $donation_id = $conn->insert_id;
-        echo "<script>alert('Thank you for your generous donation, $first_name! You have successfully applied for donation and your contribution will make a real difference.'); window.location.href='donate.html';</script>";
+        header("Location: thank_you.php?donation_id=$donation_id");
+        exit;
     } else {
         echo "Error: " . $stmt->error;
     }

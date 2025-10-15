@@ -1,3 +1,32 @@
+<?php
+include 'db_connect.php';
+
+$donation_id = isset($_GET['donation_id']) ? (int)$_GET['donation_id'] : 0;
+$error = '';
+
+if ($donation_id > 0) {
+    $stmt = $conn->prepare("SELECT * FROM donations WHERE id = ?");
+    $stmt->bind_param("i", $donation_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($row = $result->fetch_assoc()) {
+        $impact_type = htmlspecialchars($row['impact_type'] ?: 'General Support');
+        $amount = $row['amount'];
+        $custom_amount = $row['custom_amount'];
+        $donation_amount = ($custom_amount > 0) ? $custom_amount : $amount;
+        $amount_type = htmlspecialchars($row['amount_type'] ?: 'One-time');
+        $donation_id_display = $row['id'];
+    } else {
+        $error = "Donation not found.";
+    }
+    $stmt->close();
+} else {
+    $error = "Invalid donation ID.";
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,13 +61,17 @@
                     <i class="fa-solid fa-check-circle"></i>
                     <h1>Thank You for Your Donation!</h1>
                     <p>Your generous contribution will make a real difference in the lives of children. We've sent a receipt to your email.</p>
-                    <div class="donation-summary">
+                    <?php if ($error): ?>
+                        <div class="error-message" style="color: red; text-align: center; margin: 20px 0;"><?php echo $error; ?></div>
+                    <?php else: ?>
+                        <div class="donation-summary">
                         <h3>Donation Details</h3>
-                        <p><strong>Program:</strong> <span id="impact-type">Loading...</span></p>
-                        <p><strong>Amount:</strong> ₹<span id="donation-amount">0</span></p>
-                        <p><strong>Type:</strong> <span id="amount-type">Loading...</span></p>
-                        <p><strong>Donation ID:</strong> <span id="donation-id">Loading...</span></p>
-                    </div>
+                        <p><strong>Program:</strong> <span><?php echo $impact_type; ?></span></p>
+                        <p><strong>Amount:</strong> ₹<?php echo number_format($donation_amount, 2); ?></p>
+                        <p><strong>Type:</strong> <span><?php echo $amount_type; ?></span></p>
+                        <p><strong>Donation ID:</strong> <span><?php echo $donation_id_display; ?></span></p>
+                        </div>
+                    <?php endif; ?>
                     <div class="thank-you-actions">
                         <a href="index.html" class="btn btn-primary">Return Home</a>
                         <a href="programs.html" class="btn btn-secondary">Learn More About Our Programs</a>
@@ -99,13 +132,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Populate donation details from URL params
-        const urlParams = new URLSearchParams(window.location.search);
-        document.getElementById('impact-type').textContent = urlParams.get('impact') || 'General Support';
-        document.getElementById('donation-amount').textContent = urlParams.get('amount') || '0';
-        document.getElementById('amount-type').textContent = urlParams.get('type') || 'One-time';
-        document.getElementById('donation-id').textContent = urlParams.get('id') || 'N/A';
-    </script>
 </body>
 </html>
