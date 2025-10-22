@@ -1,7 +1,8 @@
-# TODO: Modify Donation Thank You Page
+# TODO: Implement Session Management for Login Persistence
 
-- [x] Update donate_process.php to redirect to thank_you.php with donation_id
-- [x] Rename thank_you.html to thank_you.php
-- [x] Add PHP code in thank_you.php to fetch and display donation summary from DB
-- [x] Remove JS script from thank_you.php
-- [x] Add error handling for invalid/missing donation_id
+- [x] Update login.php to start session and store user data upon successful login
+- [x] Create header.php with dynamic navbar (profile icon if logged in, else login button)
+- [x] Rename index.html to index.php and include header.php
+- [x] Rename programs.html to programs.php and include header.php
+- [x] Rename about.html to about.php and include header.php
+- [x] Create logout.php to destroy session
