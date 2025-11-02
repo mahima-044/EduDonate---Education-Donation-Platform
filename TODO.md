@@ -1,8 +1,5 @@
-# TODO: Implement Session Management for Login Persistence
+# TODO: Fix Admin Portal Database Issue
 
-- [x] Update login.php to start session and store user data upon successful login
-- [x] Create header.php with dynamic navbar (profile icon if logged in, else login button)
-- [x] Rename index.html to index.php and include header.php
-- [x] Rename programs.html to programs.php and include header.php
-- [x] Rename about.html to about.php and include header.php
-- [x] Create logout.php to destroy session
+- [x] Update db_connect.php to change database name from "ngo_portal" to "ngo_users" in the second connection block.
+- [x] Add creation of ngo_users table in db_connect.php after connecting to the database, including columns: id (auto increment primary key), organization_name, email (unique), password, created_at.
+- [x] Test registration and login to ensure data is stored and retrieved correctly from ngo_users table.

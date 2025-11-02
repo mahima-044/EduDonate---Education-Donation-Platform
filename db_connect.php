@@ -41,5 +41,21 @@ if ($result && $result->num_rows > 0) {
     $alter_sql = "ALTER TABLE users CHANGE name full_name VARCHAR(100) NOT NULL";
     $conn->query($alter_sql);
 }
-?>
 
+// Create registrations table if not exists
+$reg_table_sql = "CREATE TABLE IF NOT EXISTS registrations (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    org_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(20),
+    address TEXT,
+    reg_number VARCHAR(50),
+    reg_certificate VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";
+
+if ($conn->query($reg_table_sql) !== TRUE) {
+    die("Error creating registrations table: " . $conn->error);
+}
+?>
