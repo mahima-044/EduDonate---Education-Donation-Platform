@@ -58,4 +58,36 @@ $reg_table_sql = "CREATE TABLE IF NOT EXISTS registrations (
 if ($conn->query($reg_table_sql) !== TRUE) {
     die("Error creating registrations table: " . $conn->error);
 }
+
+// Create donation_requests table if not exists
+$req_table_sql = "CREATE TABLE IF NOT EXISTS donation_requests (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    category VARCHAR(100) NOT NULL,
+    amount DECIMAL(10,2) NOT NULL,
+    beneficiaries INT,
+    description TEXT,
+    image_path VARCHAR(255),
+    document_path VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";
+
+if ($conn->query($req_table_sql) !== TRUE) {
+    die("Error creating donation_requests table: " . $conn->error);
+}
+?>
+<?php
+$servername = "localhost";  // XAMPP default
+$username = "root";         // default MySQL user
+$password = "";             // default MySQL password (blank)
+$dbname = "edudonate_db";   // your database name
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+// echo "Connected successfully"; // optional test
 ?>

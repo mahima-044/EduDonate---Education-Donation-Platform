@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="sign-up.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 
     <main class="auth-container">
@@ -49,7 +51,7 @@
 
     <footer class="footer">
         <div class="footer-content">
-            </div>
+        </div>
         <div class="footer-bottom">
             &copy; 2024 EduDonate. All rights reserved.
         </div>
@@ -62,40 +64,27 @@
             const showLogin = document.getElementById('showLogin');
             const loginBox = document.querySelector('.login-box');
             const signupBox = document.querySelector('.signup-box');
-    
+
             // Function to switch to the Sign Up view
             showSignup.addEventListener('click', (e) => {
                 e.preventDefault();
                 loginBox.style.display = 'none';
                 signupBox.style.display = 'block';
             });
-    
+
             // Function to switch to the Login view
             showLogin.addEventListener('click', (e) => {
                 e.preventDefault();
                 signupBox.style.display = 'none';
                 loginBox.style.display = 'block';
             });
-    
-            // ** LOG IN Functionality **
-            loginForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                // In a real application, you would send data to a server here.
-                const email = document.getElementById('login-email').value;
-                const password = document.getElementById('login-password').value;
 
-                if (email && password) {
-                    alert('Login successful! Welcome back.');
-                    // ** Redirect to Home Page **
-                    window.location.href = 'index.html'; 
-                } else {
-                    alert('Please enter your email and password.');
-                }
-            });
-    
+            // ** LOG IN Functionality ** - Removed to allow server-side submission
+
             // ** SIGN UP Functionality ** - Removed to allow server-side submission
         });
     </script>
     <!-- <script src="sign-up.js"></script> -->
 </body>
+
 </html>

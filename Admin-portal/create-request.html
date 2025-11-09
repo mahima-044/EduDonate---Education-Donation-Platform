@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,22 +46,24 @@
         .form-group-third {
             flex: 1;
         }
-        
+
         .form-group-half {
             flex: 1;
         }
-        
+
         .form-group {
             margin-bottom: 20px;
         }
-        
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
         }
-        
-        .form-group input, .form-group textarea, .form-group select {
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px;
             border: 1px solid #ced4da;
@@ -85,7 +88,8 @@
             margin-top: 30px;
         }
 
-        .submit-request-btn, .cancel-btn {
+        .submit-request-btn,
+        .cancel-btn {
             padding: 12px 25px;
             border-radius: 4px;
             font-size: 16px;
@@ -109,6 +113,7 @@
         }
     </style>
 </head>
+
 <body>
     <a href="dashboard.html" class="back-to-dashboard">← Back to Dashboard</a>
     <div class="request-form-container">
@@ -117,7 +122,7 @@
             <p>Fill in the details for your donation request</p>
         </header>
 
-        <form action="dashboard.html" method="post">
+        <form action="submit-request.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">Request Title *</label>
                 <input type="text" id="title" name="title" placeholder="e.g. Books for 100 Students" required>
@@ -147,7 +152,8 @@
 
             <div class="form-group">
                 <label for="description">Detailed Description *</label>
-                <textarea id="description" name="description" placeholder="Explain why this donation is needed and how it will be used..." required></textarea>
+                <textarea id="description" name="description"
+                    placeholder="Explain why this donation is needed and how it will be used..." required></textarea>
             </div>
 
             <div class="form-group">
@@ -169,4 +175,5 @@
         </form>
     </div>
 </body>
+
 </html>
