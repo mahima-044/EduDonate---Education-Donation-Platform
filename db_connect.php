@@ -19,7 +19,7 @@ if ($conn->query($sql) === TRUE) {
     // Select the database
     $conn->select_db($dbname);
 } else {
-    die("Error creating database: " . $conn->error);
+    die("Error creating database: " . $conn->connect_error);
 }
 
 // Create users table if not exists
@@ -75,19 +75,4 @@ $req_table_sql = "CREATE TABLE IF NOT EXISTS donation_requests (
 if ($conn->query($req_table_sql) !== TRUE) {
     die("Error creating donation_requests table: " . $conn->error);
 }
-?>
-<?php
-$servername = "localhost";  // XAMPP default
-$username = "root";         // default MySQL user
-$password = "";             // default MySQL password (blank)
-$dbname = "edudonate_db";   // your database name
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-// echo "Connected successfully"; // optional test
 ?>

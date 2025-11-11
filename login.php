@@ -9,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Please enter both email and password.");
     }
 
-    // Find user by email
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    // Find user by email in registrations table
+    $stmt = $conn->prepare("SELECT * FROM registrations WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Verify password
         if (password_verify($password, $user['password'])) {
-            echo "<script>alert('Login successful! Redirecting...'); window.location.href='index.html';</script>";
+            echo "<script>alert('Login successful! Redirecting...'); window.location.href='Admin-portal/dashboard.html';</script>";
         } else {
-            echo "<script>alert('Incorrect password. Please try again.'); window.location.href='signup.html';</script>";
+            echo "<script>alert('Incorrect password. Please try again.'); window.location.href='Admin-portal/school-login.html';</script>";
         }
     } else {
-        echo "<script>alert('No account found with this email. Please sign up.'); window.location.href='signup.html';</script>";
+        echo "<script>alert('No account found with this email. Please register.'); window.location.href='Admin-portal/register.html';</script>";
     }
 
     $stmt->close();

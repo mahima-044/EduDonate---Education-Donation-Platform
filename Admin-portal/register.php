@@ -1,5 +1,5 @@
 <?php
-include('../db_connect.php'); // database connection
+include('db_connect.php'); // database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form inputs
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         echo "<h2>✅ Registration Successful!</h2>";
         echo "<p>Your organization <strong>$orgName</strong> has been registered successfully.</p>";
-        echo "<a href='school-login.html'>Click here to Login</a>";
+        echo "<a href='../Admin-portal/school-login.html'>Click here to Login</a>";
     } else {
         echo "❌ Error: " . $stmt->error;
     }

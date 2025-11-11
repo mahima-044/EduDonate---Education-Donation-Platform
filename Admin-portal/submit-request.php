@@ -1,5 +1,5 @@
 <?php
-include('../db_connect.php');
+include('db_connect.php');
 
 // Check if form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
