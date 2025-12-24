@@ -1,5 +1,8 @@
 <?php
-include('db_connect.php'); // database connection
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include('../db_connect.php'); // database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get form inputs
@@ -52,18 +55,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ---------------------------
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO registrations (org_name, email, phone, address, reg_number, reg_certificate, password)
+    $sql = "INSERT INTO fundraiser_login (org_name, email, phone, address, reg_number, reg_certificate, password)
             VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("sssssss", $orgName, $email, $phone, $address, $regNumber, $target_file, $hashed_password);
 
     if ($stmt->execute()) {
-        echo "<h2>✅ Registration Successful!</h2>";
-        echo "<p>Your organization <strong>$orgName</strong> has been registered successfully.</p>";
-        echo "<a href='../Admin-portal/school-login.html'>Click here to Login</a>";
+        echo "<script>alert('Registration successful! Redirecting to login...'); window.location.href='school-login.html';</script>";
     } else {
-        echo "❌ Error: " . $stmt->error;
+        if ($conn->errno == 1062) {
+            echo "<script>alert('Email already registered. Try logging in.'); window.location.href='school-login.html';</script>";
+        } else {
+            echo "❌ Error: " . $stmt->error;
+        }
     }
 
     $stmt->close();

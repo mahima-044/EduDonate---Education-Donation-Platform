@@ -1,6 +1,6 @@
 <?php
 // Database connection configuration
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root"; // default for XAMPP
 $password = ""; // default is empty in XAMPP
 $dbname = "edudonate_db";
@@ -42,8 +42,8 @@ if ($result && $result->num_rows > 0) {
     $conn->query($alter_sql);
 }
 
-// Create registrations table if not exists
-$reg_table_sql = "CREATE TABLE IF NOT EXISTS registrations (
+// Create fundraiser_login table if not exists
+$reg_table_sql = "CREATE TABLE IF NOT EXISTS fundraiser_login (
     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     org_name VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
@@ -56,7 +56,7 @@ $reg_table_sql = "CREATE TABLE IF NOT EXISTS registrations (
 )";
 
 if ($conn->query($reg_table_sql) !== TRUE) {
-    die("Error creating registrations table: " . $conn->error);
+    die("Error creating fundraiser_login table: " . $conn->error);
 }
 
 // Create donation_requests table if not exists

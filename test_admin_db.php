@@ -2,23 +2,27 @@
 include 'db_connect.php';
 
 // Test registration: Insert a test user
-$organization_name = "Test NGO";
+$org_name = "Test NGO";
 $email = "test@ngo.com";
+$phone = "1234567890";
+$address = "Test Address";
+$reg_number = "TEST123";
+$reg_certificate = "test_cert.pdf";
 $password = password_hash("testpass", PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO ngo_users (organization_name, email, password) VALUES (?, ?, ?)";
+$sql = "INSERT INTO fundraiser_login (org_name, email, phone, address, reg_number, reg_certificate, password) VALUES (?, ?, ?, ?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("sss", $organization_name, $email, $password);
+$stmt->bind_param("sssssss", $org_name, $email, $phone, $address, $reg_number, $reg_certificate, $password);
 
 if ($stmt->execute()) {
-    echo "✅ Test registration successful: User inserted into ngo_users.\n";
+    echo "✅ Test registration successful: User inserted into fundraiser_login.\n";
 } else {
     echo "❌ Test registration failed: " . $stmt->error . "\n";
 }
 $stmt->close();
 
 // Test login: Check if user exists and password verifies
-$sql = "SELECT * FROM ngo_users WHERE email = ?";
+$sql = "SELECT * FROM fundraiser_login WHERE email = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $email);
 $stmt->execute();

@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check if user exists
-    $sql = "SELECT * FROM registrations WHERE email = ?";
+    $sql = "SELECT * FROM fundraiser_login WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();

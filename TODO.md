@@ -1,37 +1,24 @@
-# Migration Plan: Move Backend from XAMPP to Cloud
+# EduDonate Form Submission Fix
 
-## Step 1: Set Up Cloud Database (PlanetScale)
-- Create a PlanetScale account (free tier available).
-- Create a new database (MySQL-compatible).
-- Note down the connection details (host, username, password, database name).
+## Completed Tasks
+- [x] Update db_connect.php to use "localhost" instead of "127.0.0.1:3307"
+- [x] Add error reporting to login.php
+- [x] Add error reporting to Admin-portal/register.php
+- [x] Change table name from 'registrations' to 'fundraiser_login' in db_connect.php
+- [x] Update register.php to insert into fundraiser_login table and redirect to login page
+- [x] Update login.php to check fundraiser_login table for authentication
+- [x] Verify forms submit to correct PHP scripts (already correct)
 
-## Step 2: Migrate Database Schema and Data
-- Export the current database from XAMPP (use phpMyAdmin or mysqldump).
-- Import the schema and data into PlanetScale database.
-- Update `db_connect.php` with new PlanetScale credentials.
+## Pending Tasks
+- [ ] Start Apache and MySQL in XAMPP control panel
+- [ ] Access the site via http://localhost/EduDonate/ (not by opening HTML files directly)
+- [ ] Test form submissions for signup, donation, register, and login forms
+- [ ] Verify data is being stored in the database tables (users, donations, fundraiser_login)
 
-## Step 3: Deploy PHP Backend to Railway
-- Create a Railway account (free tier).
-- Create a new project and connect your GitHub repo (or upload files).
-- Configure the PHP app (Railway auto-detects PHP).
-- Deploy the backend.
-- Note the deployed URL (e.g., https://your-app.railway.app).
-
-## Step 4: Update Frontend Form Actions
-- Update form actions in HTML files to point to Railway URLs:
-  - donate.html: action="https://your-app.railway.app/donate_process.php"
-  - signup.html: action="https://your-app.railway.app/signup.php"
-  - Admin-portal/create-request.html: action="https://your-app.railway.app/Admin-portal/submit-request.php"
-  - Admin-portal/register.html: action="https://your-app.railway.app/Admin-portal/register.php"
-  - login forms: action="https://your-app.railway.app/login.php" and "https://your-app.railway.app/Admin-portal/login.php"
-
-## Step 5: Handle File Uploads
-- Ensure upload directories exist on Railway (uploads/images/, uploads/documents/).
-- Update file paths in PHP if needed (Railway uses absolute paths).
-
-## Step 6: Test the Deployment
-- Test form submissions on Vercel frontend to ensure data goes to Railway backend and PlanetScale DB.
-- Verify file uploads work.
-
-## Step 7: Update Environment Variables (if needed)
-- If using env vars for DB credentials, set them in Railway dashboard.
+## Notes
+- The connection error indicates MySQL is not running in XAMPP - user needs to start MySQL service
+- All PHP scripts are syntactically correct and should work once the server is running
+- Database connection now uses default localhost port (3306)
+- Error reporting has been enabled in all form processing scripts to help debug any remaining issues
+- Registration form now redirects to login page after successful registration
+- Login authentication now checks the fundraiser_login table
